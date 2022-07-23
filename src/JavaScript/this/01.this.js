@@ -1,3 +1,4 @@
+
 let a = 20;
 var pp = {
     a:10,
@@ -14,8 +15,8 @@ var qq = {
             go.prototype.a = 50;
             return go;
         }
-        init();
+        return init;
     }
 };
-var P = qq.acc.call(pp);
+var P = qq.acc().call(pp);
 // new P();
