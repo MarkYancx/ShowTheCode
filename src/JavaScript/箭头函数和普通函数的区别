@@ -1,0 +1,6 @@
+1、没有自己的this
+2、没有自己的arguments参数，访问arguments是访问外层函数的arguments
+3、不能通过new关键字调用
+4、没有自己的new.target
+5、没有原型
+6、没有自己的super
