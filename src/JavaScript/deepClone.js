@@ -31,8 +31,8 @@ console.log('obj4', obj4) // obj4 { name: 'update', arr: [ 1, [ 5, 6, 7 ], 4 ] }
 
 
 
-// 
-function deepClone(obj = {}) {
+
+function deepClone2(obj = {}) {
     if (typeof obj !== 'object' || obj === null) {
         return obj;
     }
@@ -44,7 +44,7 @@ function deepClone(obj = {}) {
     }
     for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
-            result[key] = deepClone(obj[key]);
+            result[key] = deepClone2(obj[key]);
         }
     }
     return result;
@@ -53,5 +53,5 @@ obj1 = {
     name: 'liyuegang',
     age: 24,
 }
-obj2 = deepClone(obj1)
+obj2 = deepClone2(obj1)
 console.log(obj2)
