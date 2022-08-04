@@ -27,3 +27,6 @@ const p12 = Promise.all([p1, p2, p4])
 const p13 = Promise.all([p1, p4, p5])
     .then(console.log)
     .catch(console.log) // err4
+
+
+

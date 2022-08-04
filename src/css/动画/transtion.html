@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="base"></div>
+</body>
+</html>
+<style>
+    .base {
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        background-color: #0EA9FF;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #5daf34;
+        transition-property: width, height, background-color, border-width;
+        transition-duration: 2s;
+        transition-timing-function: ease-in;
+        transition-delay: 500ms;
+    }
+
+    /*简写*/
+    /*transition: all 2s ease-in 500ms;*/
+    .base:hover {
+        width: 200px;
+        height: 200px;
+        background-color: #5daf34;
+        border-width: 10px;
+        border-color: #3a8ee6;
+    }
+</style>
