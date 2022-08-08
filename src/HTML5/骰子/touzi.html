@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="shaiziBox">
+        <div class="shaizi1 commonBox">
+            <div class="point"></div>
+        </div>
+        <div class="shaizi2 commonBox">
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="shaizi3 commonBox">
+            <div class="point"></div>
+            <div class="point"></div>
+            <div class="point"></div>
+        </div>
+        <div class="shaizi4 commonBox">
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+
+        </div>
+        <div class="shaizi5 commonBox">
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+        </div>
+        <div class="shaizi6 commonBox">
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+            <div class="row">
+                <div class="point"></div>
+                <div class="point"></div>
+            </div>
+        </div>
+        <div class="btn">
+            <button id="start">开始</button>
+            <button id="pause">暂停</button>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<style>
+    .shaiziBox {
+        margin-top: 100px;
+        margin-left: 400px;
+        width: 350px;
+        height: 300px;
+        display: flex;
+        /* 因为有两行 */
+        flex-wrap: wrap;
+        border: 1px solid black;
+
+    }
+
+    .commonBox {
+        margin-top: 5px;
+        margin-left: 5px;
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        display: flex;
+    }
+
+    .point {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: black;
+        margin: 10px;
+    }
+
+    .bluePoint {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: skyblue;
+        margin: 10px;
+    }
+
+    /* 1的布局 */
+    .shaizi1 {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .shaizi1 .one {}
+
+    /* 2的布局 */
+    .shaizi2 {
+        justify-content: space-between;
+    }
+
+    .shaizi2 .point:nth-child(2) {
+        align-self: flex-end;
+    }
+
+    /* 3的布局 */
+    .shaizi3 {
+        justify-content: space-between;
+    }
+
+    .shaizi3 .point:nth-child(2) {
+        align-self: center;
+    }
+
+    .shaizi3 .point:nth-child(3) {
+        align-self: flex-end;
+    }
+
+    /* 4的布局 */
+    .shaizi4 {
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+
+    .shaizi4 .row {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .shaizi4 .row .point {
+        margin: 20px
+    }
+
+    /* 5的布局 */
+    .shaizi5 {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+
+    .shaizi5 .row {
+        flex-basis: 100%;
+        display: flex;
+    }
+
+    .shaizi5 .row:nth-child(1) {
+        justify-content: space-between;
+    }
+
+    .shaizi5 .row:nth-child(2) {
+        justify-content: center;
+    }
+
+    .shaizi5 .row:nth-child(3) {
+        justify-content: space-between;
+    }
+
+    /* 6的布局 */
+    .shaizi6 {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+
+    .shaizi6 .row {
+        flex-basis: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+</style>
+
+<script>
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    var timer
+    let pre = -1
+    let t1 = 0
+    let t2 = 0
+    let start = document.getElementById('start')
+    let pause = document.getElementById('pause')
+    start.addEventListener('click', startFn)
+    // start.addEventListener('click', debounce(function () {
+    //     // 去除定时器
+    //     pauseFn()
+    //     // run()
+    // }))
+    let tmpStop = debounce(pauseFn)
+    function startFn() {
+        pauseFn()
+        run()
+        tmpStop()
+    }
+    function pauseFn() {
+        if (timer) {
+            clearInterval(timer)
+        }
+    }
+    pause.addEventListener('click', pauseFn)
+
+    function run() {
+        console.log("开run");
+        timer = setInterval(() => {
+            let num = getRandomInt(1, 6)
+            while (num == pre) {
+                num = getRandomInt(1, 6)
+            }
+            let shaiziArr = document.getElementsByClassName("commonBox")
+            // console.log(shaiziArr)
+            for (let i = 0; i < 6; i++) {
+                if (i + 1 == num) {
+                    changeStyle(shaiziArr[i])
+                } else
+                    recoverStyle(shaiziArr[i])
+            }
+            pre = num
+        }, 500)
+        // setTimeout(() => {
+        //     console.log("时间到了自动关闭了");
+        //     clearInterval(timer)
+        //     t2 = new Date()
+        // },3000)
+        console.log("run函数执行结束");
+        return timer;
+
+    }
+
+    function debounce(fn, delay = 3000) {
+        let stoTimer = null
+        return function () {
+            if (stoTimer)
+                clearTimeout(stoTimer)
+            stoTimer = setTimeout(() => {
+                fn.apply(this)
+            }, delay)
+
+        }
+    }
+
+    function changeStyle(element) {
+        if (element.className.indexOf("point") != -1) {
+            element.classList.add("bluePoint")
+            return
+        } else {
+            let children = element.children
+            for (let i = 0; i < children.length; i++) {
+                changeStyle(children[i])
+            }
+        }
+    }
+
+    function recoverStyle(element) {
+        if (element.className.indexOf("point") != -1) {
+            element.classList.remove("bluePoint")
+            return
+        } else {
+            let children = element.children
+            for (let i = 0; i < children.length; i++) {
+                recoverStyle(children[i])
+            }
+        }
+    }
+</script>
