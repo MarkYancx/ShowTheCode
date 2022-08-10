@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="dustBin" draggable="true">dust bin</div>
+    <div id="container">
+        <ul>
+            <li class="item" draggable="true">item</li>
+            <li class="item" draggable="true">item</li>
+            <li class="item" draggable="true">item</li>
+            <li class="item" draggable="true">item</li>
+            <li class="item" draggable="true">item</li>
+        </ul>
+    </div>
+    <script>
+        let dustBin = document.getElementById("dustBin")
+        let items = document.getElementsByClassName("item")
+        let curEle = null
+
+        Array.from(items).forEach((item) => {
+            item.ondragstart = function (ev) {
+
+                // ev.dataTransfer.setData("text", ev.target.innerHTML)
+                ev.target.style.backgroundColor = "red"
+                curEle = this
+            }
+            item.ondragend = function (ev) {
+                // ev.dataTransfer.clearData('text')
+                // curEle = null
+            }
+        })
+        dustBin.ondragenter = function (ev) {
+            ev.preventDefault()
+            this.style.backgroundColor = "#ccc"
+            
+        }
+          dustBin.ondragover = function (ev) {
+                // console.log("over",ev);
+
+                ev.preventDefault()
+            }
+        dustBin.ondragleave = function (ev) {
+            console.log("leave");
+            this.style.backgroundColor = "black"
+        }
+      
+        dustBin.ondrop = function (ev) {
+            if (curEle) {
+                curEle.remove()
+            }
+            console.log("drop1");
+            this.style.backgroundColor = "#ccc"
+        }
+    </script>
+</body>
+
+</html>
+<style>
+    #dustBin {
+        background-color: black;
+        height: 400px;
+        width: 400px;
+        float: left;
+    }
+
+    #container {
+        float: left;
+    }
+
+    .item {
+        height: 100px;
+        width: 200px;
+        background-color: skyblue;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    li {
+        list-style: none;
+    }
+</style>
