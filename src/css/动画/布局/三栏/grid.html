@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">左侧</div>
+        <div class="middle">中间</div>
+        <div class="right">右侧</div>
+
+        <!-- 正确写法 -->
+        <!-- <div class="left">左侧</div>
+        <div class="middle">中间</div>
+        <div class="right">右侧</div> -->
+
+    </div>
+</body>
+
+</html>
+<style>
+    .wrap {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 200px auto 200px;
+    }
+
+    .left {
+        /* justify-content: left; */
+        /* flex-basis: 200px; */
+        height: 200px;
+        background-color: #555;
+
+    }
+
+    .right {
+        /* justify-content: right; */
+        /* flex-basis: 200px; */
+        height: 200px;
+        background-color: skyblue;
+    }
+
+    .middle {
+        /* flex: 1; */
+        background-color: gray;
+        /* margin: 0 20px; */
+    }
+</style>
