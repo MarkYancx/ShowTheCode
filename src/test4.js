@@ -5,7 +5,7 @@
 
 let timeMap = {}
 let id = 0;
-
+let cnt = 0
 const mySetInterval = (cb, time) => {
     let timeId = id++;
     const fn = () => {
@@ -24,9 +24,9 @@ const myClearInterval = (id) => {
 }
 
 const myId = mySetInterval(() => {
-    console.log(new Date());
+    console.log(cnt++);
 }, 1000);
 
 setTimeout(() => {
     myClearInterval(myId);
-}, 3000)
+}, 10000)

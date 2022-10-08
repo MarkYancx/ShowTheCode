@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .triangle {
+            /*对元素的宽高设为0,用边框来填充元素*/
+            width: 0;
+            height: 0;
+
+            /*第一种实现方法*/
+            border-top: 50px solid blue;
+            border-bottom: 50px solid green;
+            /* border-left: 50px solid gray; */
+            border-right: 50px solid transparent;
+            
+            
+
+            /*第二种实现方法*/
+            /* border: 50px solid;
+            border-color: transparent transparent blue transparent; */
+
+            /*第三种实现方法*/
+            /* border: 50px solid transparent;
+            border-bottom-color: red; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="triangle"></div>
+</body>
+
+</html>

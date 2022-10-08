@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本表单元素</title>
+</head>
+<body>
+    <h3>用户注册</h3>
+    <form action = "" method="POST">
+        <fieldset>
+            <legend>基本信息（必填）</legend>
+            <div>
+                <label for = "my-username">账号：</label>
+                <input
+                    type = "text"
+                    id = "my-username"
+                    name = "username"
+                    placeholder="6-15位"
+                />
+            </div>
+            <div>
+                <label for="email-id">邮箱：</label>
+                <input type="email" name="email" id="email-id" placeholder="demo@qq.com" required />
+            </div>
+            <!-- 密码 框-->
+            <div>
+                <label for="pwd-1">密码：</label>
+                <input type="password" name="password1" id="pwd-2" placeholder="不少于6位且字母+数字" />
+                <!-- 点击显示密码 -->
+                <!-- <button onclick="ShowPsw()" id="btn" type="button">显示密码</button> -->
+            </div>
+            <div>
+                <label for="pwd-2">确认：</label>
+                <input type="password" name="password2" id="pwd-1" />
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>扩展信息(选填)</legend>
+            <div>
+                <label>生日：
+                    <input type="date" name="birthday" />
+                </label>
+            </div>
+            <!-- 单选按钮 -->
+            <div>
+                <label for="secret">性别：</label>
+                <!-- 单选按钮中在name属性名必须相同 -->
+                <input type="radio" value="male" name="gender" id="male" /><label for="">男</label>
+                <input type="radio" value="female" name="gender" id="female" /><label for="">女</label>
+                <input type="radio" value="secret" name="gender" id="secret" checked /><label for="secret">保密</label>
+            </div>
+            <!-- 复选框 -->
+            <div id = "hobby">
+                <label for="programme">爱好</label>
+                <!-- 因为复选框返回是一个或多个值，最方便后端用数组来处理， 所以将name名称设置为数组形式便于后端脚本处理 -->
+                <input type="checkbox" name="hobby[]" id="game" value="game" />
+                <label for="game">打游戏</label>
+                <input type="checkbox" name="hobby[]" id="shoot" value="shoot" />
+                <label for="game">射击</label>
+                <input type="checkbox" name="hobby[]" id="programme" value="programme" checked />
+                <label for="game">编程</label>
+                <input type="checkbox" name="hobby[]" id="selectAll" value="all"/>
+                <label for="game">全选</label>
+                <input type="checkbox" name="hobby[]" id="inverseAll" value="inverse" />
+                <label for="game">反选</label>
+            </div>
+            <!-- 选项列表 -->
+            <div>
+                <label for="brand">手机：</label>
+                <input type="search" list="phone" id="brand" name="brand" />
+                <datalist id="phone">
+                    <option value="apple"> </option>
+                    <option value="huawei">华为</option>
+                    <option value="mi" label="小米"> </option>
+                </datalist>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>其它信息(选填)</legend>
+            <!--文件上传-->
+            <div>
+                <label for="uploads">上传头像:</label>
+                <input type="file" name="user_pic" id="uploads" accept="image/png, image/jpeg, image/gif" />
+            </div>
+            <!--文本域-->
+            <div>
+                <label for="resume">简历:</label>
+                <!--注意文本域没有value属性-->
+                <textarea name="resume" id="resume" cols="30" rows="5" placeholder="不超过100字"></textarea>
+            </div>
+        </fieldset>
+        <!-- 隐藏域, 例如用户的Id, 注册，登录的时间,无需用户填写 -->
+        <input type="hidden" name="user_id" value="123" />
+        <p>
+            <input type="submit" value="提交" class="btn" />
+            <button class="btn">提交</button>
+        </p>
+
+    </form>
+</body>
+<script>
+    let selectAll = document.getElementById("selectAll")
+    let inverseAll = document.getElementById("inverseAll")
+    let hobby = document.getElementById("hobby").getElementsByTagName('input')
+    selectAll.onclick = function() {
+        for (let i = 0; i < hobby.length; i++) {
+            if(hobby[i].id != "inverseAll")
+            hobby[i].checked = this.checked
+        }
+    }
+     inverseAll.onclick = function () {
+            for (let i = 0; i < hobby.length; i++) {
+                if (hobby[i].id != "selectAll" && hobby[i].id != "inverseAll")
+                    hobby[i].checked = !hobby[i].checked 
+            }
+        }
+
+    // for(let i = 0; i < hobby.length; i++) {
+    //     hobby[i].onclick = function () {
+    //         flag = true
+    //         for (let i = 0; i < hobby.length; i++) {
+    //             if (!hobby[i].checked) {
+    //                 flag = false
+    //                 break
+    //             }
+    //         }
+    //         selectAll.checked = flag
+    //     }
+    // }
+</script>
+</html>
+
+<!-- <style>
+    
+      body {
+        color: #555;
+      }
+      h3 {
+        text-align: center;
+      }
+      form {
+        width: 450px;
+        margin: 30px auto;
+        border-top: 1px solid #aaa;
+      }
+      form fieldset {
+        border: 1px solid seagreen;
+        background-color: lightcyan;
+        box-shadow: 2px 2px 4px #bbb;
+        border-radius: 10px;
+        margin: 20px;
+      }
+      form fieldset legend {
+        background-color: rgb(178, 231, 201);
+        border-radius: 10px;
+        color: seagreen;
+        padding: 5px 15px;
+      }
+      form div {
+        margin: 5px;
+      }
+      form p {
+        text-align: center;
+      }
+      form .btn {
+        width: 80px;
+        height: 30px;
+        border: none;
+        background-color: seagreen;
+        color: #ddd;
+      }
+      form .btn:hover {
+        background-color: coral;
+        color: white;
+        cursor: pointer;
+      }
+      input:focus {
+        background-color: rgb(226, 226, 175);
+      }
+    
+</style> -->

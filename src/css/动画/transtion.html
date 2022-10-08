@@ -7,19 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="base"></div>
+    <div class="container">
+        <div class="base"></div>
+    </div>
 </body>
 </html>
 <style>
+    .container {
+        position: relative;
+    }
     .base {
+        position: absolute;
         width: 100px;
         height: 100px;
+        left: 0px;
         display: inline-block;
         background-color: #0EA9FF;
         border-width: 5px;
         border-style: solid;
         border-color: #5daf34;
-        transition-property: width, height, background-color, border-width;
+        transition-property: margin-left,width, height, background-color, border-width;
         transition-duration: 2s;
         transition-timing-function: ease-in;
         transition-delay: 500ms;
@@ -28,8 +35,9 @@
     /*简写*/
     /*transition: all 2s ease-in 500ms;*/
     .base:hover {
-        width: 200px;
-        height: 200px;
+        margin-left: 500px;
+        /* width: 200px;
+        height: 200px; */
         background-color: #5daf34;
         border-width: 10px;
         border-color: #3a8ee6;

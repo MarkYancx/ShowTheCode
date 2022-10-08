@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+   <body>    <div class="content">
+      <div class="l1">
+          <div class="l2">
+                <p class="offsetInfo"></p>
+                <p class="scrollInfo"></p>
+                <p class="clientInfo"></p>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+                <h1>1</h1>
+          </div>
+      </div>
+       
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        let dom = document.querySelector('.l2');
+        let offsetDom = document.querySelector('.offsetInfo');
+        let scrollDom = document.querySelector('.scrollInfo');
+        let clientDom = document.querySelector('.clientInfo');
+        offsetDom.innerHTML = `offsetLeft: ${dom.offsetLeft}; offsetTop: ${dom.offsetTop}; offsetWidth: ${dom.offsetWidth}; offsetHeight: ${dom.offsetHeight} offsetHeight: ${dom.offsetHeight}`;
+
+        scrollDom.innerHTML = `scrollLeft: ${dom.scrollLeft}; scrollTop: ${dom.scrollTop}; scrollWidth: ${dom.scrollWidth}; scrollHeight: ${dom.scrollHeight}`;
+
+        clientDom.innerHTML = `clientLeft: ${dom.clientLeft}; clientTop: ${dom.clientTop}; clientWidth: ${dom.clientWidth}; clientHeight: ${dom.clientHeight}`;
+
+        dom.onscroll = function(){
+            scrollDom.innerHTML = `scrollLeft: ${dom.scrollLeft}; scrollTop: ${dom.scrollTop}; scrollWidth: ${dom.scrollWidth}; scrollHeight: ${dom.scrollHeight}`;
+        }
+    }
+</script>
+<style>
+body{
+    padding: 10px;
+    margin: 0;
+}
+.content{
+    padding: 10px;
+    border: 2px solid #ddd;
+}
+.l1{
+    /* position: relative; */
+    padding: 10px;
+    background: #A4F790;
+}
+.l2{
+    width: 500px;
+    height: 120px;
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid #fff;
+    background: #B0F9F9;
+    overflow: auto;
+}
+</style>
+</html>

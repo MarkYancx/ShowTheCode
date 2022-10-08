@@ -1,6 +1,6 @@
 <template>
   <div>
-  
+      <div>test</div>
     
         <router-link to="/propsAndEmit" tag="button">propsAndEmit</router-link><br>
         <!-- <router-link to="/propsAndEmit" tag="button">parentsAndChildren</router-link><br>

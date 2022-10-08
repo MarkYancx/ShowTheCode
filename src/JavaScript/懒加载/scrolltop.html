@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            margin-top: 400px;
+            width: 600px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="img/1pxImg.png" data-url="img/img1.webp">
+    <img src="img/1pxImg.png" data-url="img/img2.webp">
+    <img src="img/1pxImg.png" data-url="img/img3.webp">
+    <img src="img/1pxImg.png" data-url="img/img4.webp">
+    <img src="img/1pxImg.png" data-url="img/img5.webp">
+
+
+    <script>
+        var imgs = document.getElementsByTagName('img')
+        scrollFn()
+        // 监听滚动事件
+        window.onscroll = scrollFn
+        function scrollFn() {
+            var clietH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            var scrollTop = document.documentElement.scrollTop || window.pageYOffset ||  document.body.scrollTop;
+            console.log("clietH",clietH, "scrollTop",scrollTop);
+            Array.from(imgs).forEach((item) =>{
+                let eleTop = item.offsetTop
+                console.log("offsetTop",eleTop);
+                // console.log(eleTop)
+                let count = scrollTop + clietH - eleTop
+                console.log(count)
+                // 可设置为>100 查看懒加载效果
+                if (count > 0) {
+                    //从data-url中取出真实的图片地址赋值给scr
+                    item.setAttribute('src', item.getAttribute('data-url')) 
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

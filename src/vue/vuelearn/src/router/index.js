@@ -1,27 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ComponentCommunication from '@/components/ComponentCommunication'
-import Section from '@/ComponentAndCommunication/1PropsAndEmit/Section'
-import Article from '@/ComponentAndCommunication/1PropsAndEmit/Article'
+import A from '@/components/attrsAndListeners/A.vue'
+// import A from '../components/attrsAndListeners'
+
 Vue.use(Router)
 
 const routes = [
   {
-    path: '/',
-    name: 'ComponentCommunication',
-    component: ComponentCommunication,
-    // children: [
-    //   {
-    //     path: 'propsAndEmit',
-    //     component: Section
-    //   }
-    // ]
+    path: '/attrs',
+    name: 'A',
+    component: A,
   },
-  {
-    path: '/propsAndEmit',
-    name: 'propsAndEmit',
-    component: Section,
-  },
+ 
 ];
 let router = new Router({
   routes,

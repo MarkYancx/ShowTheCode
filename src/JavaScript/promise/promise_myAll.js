@@ -1,9 +1,12 @@
+const { resolve } = require("path");
+
 Promise.myAll = (promises) => {
     return new Promise((resolve, reject) => {
         let count = 0;
         let result = [];
         let len = promises.length;
         if (len === 0)
+            // 这里的return似乎不太需要
             return resolve([]);
 
         promises.forEach((promise, i) => {
@@ -14,6 +17,29 @@ Promise.myAll = (promises) => {
                     resolve(result)
             }).catch(reject)
         })
+    })
+}
+
+// 2022.08.29
+Promise.myAll2 = (promises) => {
+    return new Promise((resolve, reject) => {
+        let count = 0
+        let result = [];
+        if (promises.length == 0) {
+            resolve([])
+            return
+        }
+        promises.forEach((promise, i) => {
+            Promise.resolve(promise).then((res) => {
+                count += 1
+                result[i] = res
+                if (count == promises.length)
+                    resolve(result)
+            }).catch(err => {
+                reject(err)
+            })
+        })
+
     })
 }
 

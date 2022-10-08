@@ -28,3 +28,16 @@ function debounce1(fn, delay) {
         },delay)
     }
 }
+// 2022.08.29
+function deboumce2(fn, delay) {
+    let timer = null
+    return function () {
+        if (timer)
+            clearTimeout(timer)
+        let args = arguments
+        timer = setTimeout(() => {
+            fn.apply(this, args)
+        }, delay)
+    }
+    
+}
